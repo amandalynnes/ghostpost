@@ -10,7 +10,7 @@ def index_view(request):
     posts = PostItem.objects.all().order_by('time_created')
 
     return render(request, 'index.html', {
-        'heading': 'Roast & Boasts',
+        'heading': 'Roasts & Boasts',
         'posts': posts
     })
 

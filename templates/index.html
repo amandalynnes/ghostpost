@@ -1,14 +1,25 @@
-<h1>{{ heading }}</h1>
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
 
-<p>
+</head>
 
-    {% for item in posts %}
-        <p>{{ item.text }}</p>
-        <p>{{ item.likes }}</p>
-        <p>{{ item.dislikes }}</p>
-        <p>{{ item.time_created }}</p>
-    {% endfor %}
+<body>
+    <h1>{{ heading }}</h1>
 
-    
+    <p>
 
-</p>
+        {% for item in posts %}
+            <p>{{ item.text }}</p>
+            <p>{{ item.likes }}</p>
+            <p>{{ item.dislikes }}</p>
+            <p>{{ item.time_created }}</p>
+
+            
+
+        {% endfor %}
+
+        
+
+    </p>
+</body>
