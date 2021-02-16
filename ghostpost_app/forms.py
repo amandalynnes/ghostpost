@@ -7,5 +7,5 @@ class AddPostForm(forms.Form):
     text = forms.CharField(max_length=280)
     likes = forms.IntegerField()
     dislikes = forms.IntegerField()
-    time_created = forms.DateTimeField(default=timezone.now())
+    time_created = forms.DateTimeField()
     toast_roast = forms.BooleanField()

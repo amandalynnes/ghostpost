@@ -7,7 +7,7 @@ class PostItem(models.Model):
     text = models.CharField(max_length=280)
     likes = models.IntegerField()
     dislikes = models.IntegerField()
-    time_created = models.DateTimeField(default=timezone.now())
+    time_created = models.DateTimeField()
     toast_roast = models.BooleanField()
 
     def __str__(self):
