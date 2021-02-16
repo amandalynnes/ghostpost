@@ -11,7 +11,7 @@ def index_view(request):
 
     return render(request, 'index.html', {
         'heading': 'Roast & Boasts',
-        'post': posts
+        'posts': posts
     })
 
 
@@ -21,19 +21,21 @@ def post_view(request):
     if form.is_valid():
         data = form.cleaned_data
         PostItem.objects.create(
-            post=data['post'],
+            text=data['text'],
             likes=data['likes'],
             dislikes=data['dislikes'],
             time_created=data['time_created'],
             toast_roast=data['toast_roast']
         )
         form = AddPostForm()
-        return render(request, 'post_view.html', {'post': post, 
+        return render(request, 'post_view.html', {'text': text, 
             'likes': likes,
             'dislikes': dislikes,
             'time_created': time_created,
-            'toast_roast': toast_roast,
+            'toast': toast,
+            'roast': roast,
+
             })
 
 
-    return redirect(request, 'post_view/', {'posts': posts})
+    return redirect(request, 'post/', {'form': form})

@@ -8,4 +8,5 @@ class AddPostForm(forms.Form):
     likes = forms.IntegerField()
     dislikes = forms.IntegerField()
     time_created = forms.DateTimeField()
-    toast_roast = forms.BooleanField()
+    toast = forms.BooleanField()
+    roast = forms.BooleanField()

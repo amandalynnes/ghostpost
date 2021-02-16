@@ -19,7 +19,7 @@ from ghostpost_app import views
 
 urlpatterns = [
     path('', views.index_view, name= 'homepage'),
-    path('post_view/', views.post_view, name= 'submit_post'),
+    path('post/', views.post_view, name= 'submit_post'),
     # path('', views.index_view, name= home),
     # path('', views.index_view, name= home),
     path('admin/', admin.site.urls),

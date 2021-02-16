@@ -8,7 +8,9 @@ class PostItem(models.Model):
     likes = models.IntegerField()
     dislikes = models.IntegerField()
     time_created = models.DateTimeField()
-    toast_roast = models.BooleanField()
+    toast = models.BooleanField()
+    roast = models.BooleanField()
+
 
     def __str__(self):
         return f"{self.text}"
