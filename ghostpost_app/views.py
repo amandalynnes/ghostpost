@@ -48,3 +48,9 @@ def dislike_view(request, post_id):
     post.dislikes += 1
     post.save()
     return redirect('/')
+
+def score_view(request, post_id):
+    post = PostItem.objects.filter(id=post_id).first()
+    post.dislikes += 1
+    post.save()
+    return redirect(reverse('homepage', args=['score']))

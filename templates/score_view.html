@@ -1,0 +1,23 @@
+<head>
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+
+</head>
+
+<body>
+    <h1>{{ heading }}</h1>
+
+    <p>
+
+        {% for item in posts %}
+            <h4>{{ item.toast_roast }}</h4>
+            <p>-------------------------------------------------</p>
+            <p>Post#: {{ item.id }}</p>
+            <p>{{ item.text }}</p>
+            <p>{{ item.likes | add:"-item.dislikes" }}</p>
+            <p>{{ item.likes }}</p>
+            <p>{{ item.dislikes }}</p>
+            <p>{{ item.time_created }}</p>
+            <p> <a href="/like/{{ item.id }}/">Like</a></p>
+            <p> <a href="/dislike/{{ item.id }}/">Dislike</a></p>
+        {% endfor %}

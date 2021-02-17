@@ -10,8 +10,5 @@ toast_roast_choices = (
 
 class AddPostForm(forms.Form):
     text = forms.CharField(max_length=280)
-    # likes = forms.IntegerField(default=0)
-    # dislikes = forms.IntegerField(default=0)
-    # time_created = forms.DateTimeField(default=timezone.now)
     toast_roast = forms.ChoiceField(choices=toast_roast_choices)
     

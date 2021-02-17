@@ -6,19 +6,21 @@
 
 <body>
     <h1>{{ heading }}</h1>
-
+    <a href="/post/">Post</a>
     <p>
 
         {% for item in posts %}
-            {% if item.toast and not item.roast %}
-                <h3>Toast</h3>
-            {% endif %}
-            {% if item.roast and not item.toast %}
-                <h3>Roast</h3>
-            {% endif %}
             <p>-------------------------------------------------</p>
+            <h4>{{ item.toast_roast }}</h4>
+            {% if item.toast_roast == 1 %}
+                <h4>Toast</h4>
+            {% endif %}
+            {% if item.toast_roast == 2 %}
+                <h4>Roast</h4>
+            {% endif %}
             <p>Post#: {{ item.id }}</p>
             <p>{{ item.text }}</p>
+            <p>{{ item.likes | add:"-item.dislikes" }}</p>
             <p>{{ item.likes }}</p>
             <p>{{ item.dislikes }}</p>
             <p>{{ item.time_created }}</p>
