@@ -16,10 +16,14 @@
             {% if item.roast and not item.toast %}
                 <h3>Roast</h3>
             {% endif %}
+            <p>-------------------------------------------------</p>
+            <p>Post#: {{ item.id }}</p>
             <p>{{ item.text }}</p>
             <p>{{ item.likes }}</p>
             <p>{{ item.dislikes }}</p>
             <p>{{ item.time_created }}</p>
+            <p> <a href="/like/{{ item.id }}/">Like</a></p>
+            <p> <a href="/dislike/{{ item.id }}/">Dislike</a></p>
         {% endfor %}
 
         

@@ -23,9 +23,6 @@ def post_view(request):
             data = form.cleaned_data
             PostItem.objects.create(
                 text=data['text'],
-                # likes=data['likes'],
-                # dislikes=data['dislikes'],
-                # time_created=data['time_created'],
                 toast_roast=data['toast_roast'],
             )
             return redirect(reverse('submit_post'))
@@ -40,7 +37,7 @@ def post_view(request):
 
 
 def like_view(request, post_id):
-    post = PostItem.objects.all().order_by('time_created').reverse()
+    post = PostItem.objects.filter(id=post_id).first()
     post.likes += 1
     post.save()
     return redirect('/')
