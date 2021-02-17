@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect, reverse
+from django.utils import timezone
 from ghostpost_app.models import PostItem
 from ghostpost_app.forms import AddPostForm
 
@@ -7,7 +8,7 @@ from ghostpost_app.forms import AddPostForm
 
 
 def index_view(request):
-    posts = PostItem.objects.all().order_by('time_created')
+    posts = PostItem.objects.all().order_by('time_created').reverse()
 
     return render(request, 'index.html', {
         'heading': 'Roasts & Boasts',
@@ -16,18 +17,18 @@ def index_view(request):
 
 
 def post_view(request):
-    
-    form = AddPostForm(request.POST)
-    if form.is_valid():
-        data = form.cleaned_data
-        PostItem.objects.create(
-            text=data['text'],
-            likes=data['likes'],
-            dislikes=data['dislikes'],
-            time_created=data['time_created'],
-            toast_roast=data['toast_roast']
-        )
-        return redirect(reverse('submit_post'))
+    if request.method == 'POST':
+        form = AddPostForm(request.POST)
+        if form.is_valid():
+            data = form.cleaned_data
+            PostItem.objects.create(
+                text=data['text'],
+                # likes=data['likes'],
+                # dislikes=data['dislikes'],
+                # time_created=data['time_created'],
+                toast_roast=data['toast_roast'],
+            )
+            return redirect(reverse('submit_post'))
 
     form = AddPostForm()
     return render(
@@ -37,12 +38,16 @@ def post_view(request):
         'form': form},
     )
 
-    # return render(request, 'post_view.html', {
-    #     'heading': 'Post a Boast...or a Roast',
-    #     'text': text, 
-    #     'likes': likes,
-    #     'dislikes': dislikes,
-    #     'time_created': time_created,
-    #     'toast': toast,
-    #     'roast': roast,
-    #     })
+
+def like_view(request, post_id):
+    post = PostItem.objects.all().order_by('time_created').reverse()
+    post.likes += 1
+    post.save()
+    return redirect('/')
+
+
+def dislike_view(request, post_id):
+    post = PostItem.objects.filter(id=post_id).first()
+    post.dislikes += 1
+    post.save()
+    return redirect('/')

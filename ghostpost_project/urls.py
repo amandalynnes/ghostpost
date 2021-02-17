@@ -20,7 +20,7 @@ from ghostpost_app import views
 urlpatterns = [
     path('', views.index_view, name= 'homepage'),
     path('post/', views.post_view, name= 'submit_post'),
-    # path('', views.index_view, name= home),
-    # path('', views.index_view, name= home),
+    path('like/<int:post_id>/', views.like_view, name= 'like'),
+    path('dislike/<int:post_id>/', views.dislike_view, name= 'dislike'),
     path('admin/', admin.site.urls),
 ]
