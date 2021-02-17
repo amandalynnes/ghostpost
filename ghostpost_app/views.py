@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, reverse
 from ghostpost_app.models import PostItem
 from ghostpost_app.forms import AddPostForm
 
@@ -17,7 +17,7 @@ def index_view(request):
 
 def post_view(request):
     
-    form  = AddPostForm(request.POST)
+    form = AddPostForm(request.POST)
     if form.is_valid():
         data = form.cleaned_data
         PostItem.objects.create(
@@ -27,15 +27,22 @@ def post_view(request):
             time_created=data['time_created'],
             toast_roast=data['toast_roast']
         )
-        form = AddPostForm()
-        return render(request, 'post_view.html', {'text': text, 
-            'likes': likes,
-            'dislikes': dislikes,
-            'time_created': time_created,
-            'toast': toast,
-            'roast': roast,
+        return redirect(reverse('submit_post'))
 
-            })
+    form = AddPostForm()
+    return render(
+        request,
+        'post_view.html',{
+        'heading': 'Post a Boast or a Roast',
+        'form': form},
+    )
 
-
-    return redirect(request, 'post/', {'form': form})
+    # return render(request, 'post_view.html', {
+    #     'heading': 'Post a Boast...or a Roast',
+    #     'text': text, 
+    #     'likes': likes,
+    #     'dislikes': dislikes,
+    #     'time_created': time_created,
+    #     'toast': toast,
+    #     'roast': roast,
+    #     })
