@@ -12,7 +12,7 @@
 
         {% for item in posts %}
             <p>-------------------------------------------------</p>
-            <h4>{{ item.toast_roast }}</h4>
+            <h4>{{ item.choose }}</h4>
             <p>Post#: {{ item.id }}</p>
             <p>{{ item.text }}</p>
             <p>{{ item.likes | add:"-item.dislikes" }}</p>

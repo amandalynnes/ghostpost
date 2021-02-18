@@ -3,12 +3,12 @@ from django.utils import timezone
 
 # Create your models here.
 # https://www.geeksforgeeks.org/choicefield-django-forms/
-toast_roast_choices = (
-    ('1', 'toast'),
+boast_roast_choices = (
+    ('1', 'boast'),
     ('2', 'roast')
 )
 
 class AddPostForm(forms.Form):
     text = forms.CharField(max_length=280)
-    toast_roast = forms.ChoiceField(choices=toast_roast_choices)
+    choose = forms.ChoiceField(choices=boast_roast_choices)
     

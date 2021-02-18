@@ -6,7 +6,6 @@ from ghostpost_app.forms import AddPostForm
 
 # Create your views here.
 
-# TODO: fix objects in database
 # TODO: fix like and dislike redirect
 # TODO: fix score in template
 # TODO: render "boast" or "roast" instead of "1" or "two"
@@ -28,7 +27,7 @@ def post_view(request):
             data = form.cleaned_data
             PostItem.objects.create(
                 text=data['text'],
-                toast_roast=data['toast_roast'],
+                choose=data['choose'],
             )
             return redirect(reverse('submit_post'))
 
@@ -45,14 +44,16 @@ def like_view(request, post_id):
     post = PostItem.objects.filter(id=post_id).first()
     post.likes += 1
     post.save()
-    return HttpResponseRedirect("")
+    return redirect('/')
 
 
 def dislike_view(request, post_id):
     post = PostItem.objects.filter(id=post_id).first()
     post.dislikes += 1
     post.save()
-    return HttpResponseRedirect("")
+    # return HttpResponseRedirect("")
+    return redirect('/')
+
 
 def score_view(request):
     posts = PostItem.objects.all().order_by('time_created').reverse()
