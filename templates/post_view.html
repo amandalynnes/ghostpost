@@ -6,10 +6,10 @@
 
 <body>
     <h1>{{ heading }}</h1>
-    <a href="/">Home</a>
-    <a href="/score/">|Sort by Score|</a>
-    <a href="/boasts/">|Boasts|</a>
-    <a href="/roasts/">|Roasts|</a>
+    <button onclick="location.href='/'">|Home|</button>
+    <button onclick="location.href='/score/'">|Sort by Score|</button>
+    <button onclick="location.href='/boasts/'">|Boasts|</button>
+    <button onclick="location.href='/roasts/'">|Roasts|</button>
 
     <form method="post">
         {% csrf_token %}

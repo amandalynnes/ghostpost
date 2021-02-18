@@ -6,10 +6,10 @@
 
 <body>
     <h1>{{ heading }}</h1>
-    <a href="/">|Home|</a>
-    <a href="/post/">|Post a Boast or Roast|</a>
-    <a href="/score/">|Scores|</a>
-    <a href="/roasts/">|Roasts|</a>
+    <button onclick="location.href='/'">|Home|</button>
+    <button onclick="location.href='/post/'">|Post a Boast or Roast|</button>
+    <button onclick="location.href='/score/'">|Sort by Score|</button>
+    <button onclick="location.href='/roasts/'">|Roasts|</button>
 
 
     <p>
@@ -25,8 +25,8 @@
             <p>{{ item.text }}</p>
             <p>{{ item.score }}</p>
             <p>{{ item.time_created }}</p>
-            <p> <a href="/like/{{ item.id }}/">Like</a></p>
-            <p> <a href="/dislike/{{ item.id }}/">Dislike</a></p>
+            <p> <button onclick="location.href='/like/{{ item.id }}/'">Like</button></p>
+            <p> <button onclick="location.href='/dislike/{{ item.id }}/'">Dislike</button></p>
         {% endfor %}
 
         
