@@ -6,16 +6,20 @@ from django.utils import timezone
 
 class PostItem(models.Model):
     boast_roast_choices = (
-    ('1', 'toast'),
-    ('2', 'roast')
+    (True, 'boast'),
+    (False, 'roast')
     )
     text = models.CharField(max_length=280)
     likes = models.IntegerField(default=0)
     dislikes = models.IntegerField(default=0)
     time_created = models.DateTimeField(default=timezone.now())
-    choose = models.CharField(max_length=1, choices=boast_roast_choices)
+    choose = models.BooleanField(choices=boast_roast_choices)
 
 
 
     def __str__(self):
-        return f'{self.text}'
+        return self.text
+
+    def score(self):
+        score = self.likes - self.dislikes
+        return score

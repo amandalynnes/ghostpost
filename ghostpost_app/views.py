@@ -6,10 +6,6 @@ from ghostpost_app.forms import AddPostForm
 
 # Create your views here.
 
-# TODO: fix like and dislike redirect
-# TODO: fix score in template
-# TODO: render "boast" or "roast" instead of "1" or "two"
-
 
 def index_view(request):
     posts = PostItem.objects.all().order_by('time_created').reverse()
@@ -40,26 +36,43 @@ def post_view(request):
     )
 
 
-def like_view(request, post_id):
+def like(request, post_id):
     post = PostItem.objects.filter(id=post_id).first()
     post.likes += 1
     post.save()
     return redirect('/')
 
 
-def dislike_view(request, post_id):
+def dislike(request, post_id):
     post = PostItem.objects.filter(id=post_id).first()
     post.dislikes += 1
     post.save()
-    # return HttpResponseRedirect("")
+
     return redirect('/')
 
 
 def score_view(request):
-    posts = PostItem.objects.all().order_by('time_created').reverse()
-    # post.dislikes += 1
-    # post.save()
+    posts = sorted(PostItem.objects.all(), key= lambda x: x.score())[::-1]
+
     return render(request, 'score_view.html', {
+        'heading': 'Four Score.....',
+        'posts': posts
+    })
+
+
+def boast_view(request):
+    posts = PostItem.objects.filter(choose=True).order_by('time_created').reverse()
+
+    return render(request, 'boast_view.html', {
+        'heading': 'Four Score.....',
+        'posts': posts
+    })
+
+
+def roast_view(request):
+    posts = PostItem.objects.filter(choose=False).order_by('time_created').reverse()
+
+    return render(request, 'roast_view.html', {
         'heading': 'Four Score.....',
         'posts': posts
     })

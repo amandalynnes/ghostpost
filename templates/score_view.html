@@ -6,19 +6,28 @@
 
 <body>
     <h1>{{ heading }}</h1>
-    <a href="/">Home</a>
+    <a href="/">|Home|</a>
+    <a href="/post/">|Post a Boast or Roast|</a>
+    <a href="/boasts/">|Boasts|</a>
+    <a href="/roasts/">|Roasts|</a>
 
     <p>
 
         {% for item in posts %}
             <p>-------------------------------------------------</p>
-            <h4>{{ item.choose }}</h4>
-            <p>Post#: {{ item.id }}</p>
+            {% if item.choose == True %}
+                <h4>Boast</h4>
+            {% endif %}
+            {% if item.choose == False %}
+                <h4>Roast</h4>
+            {% endif %}
             <p>{{ item.text }}</p>
-            <p>{{ item.likes | add:"-item.dislikes" }}</p>
-            <p>{{ item.likes }}</p>
-            <p>{{ item.dislikes }}</p>
+            <p>{{ item.score }}</p>
             <p>{{ item.time_created }}</p>
             <p> <a href="/like/{{ item.id }}/">Like</a></p>
             <p> <a href="/dislike/{{ item.id }}/">Dislike</a></p>
         {% endfor %}
+
+        
+    </p>
+</body>

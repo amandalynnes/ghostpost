@@ -4,8 +4,8 @@ from django.utils import timezone
 # Create your models here.
 # https://www.geeksforgeeks.org/choicefield-django-forms/
 boast_roast_choices = (
-    ('1', 'boast'),
-    ('2', 'roast')
+    (True, 'boast'),
+    (False, 'roast')
 )
 
 class AddPostForm(forms.Form):
