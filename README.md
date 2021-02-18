@@ -1,3 +1,12 @@
+<!-- Recieved help from Peter Marsh, Marcus Chiriboga, Mai Nguyen, Gordon Marhurin, Marcel Cornett, the following websites:
+
+https://stackoverflow.com/questions/38390177/what-is-a-noreversematch-error-and-how-do-i-fix-it
+
+https://stackoverflow.com/questions/10783864/django-1-4-timezone-now-vs-datetime-datetime-now
+
+django/ python docs and various other googlings
+ -->
+
 # 👻GhostPost 👻
  The GhostPost Machine™ is a website where people can anonymously post Boasts or Roasts of whatever they want. Like most services, there is a character limit: 280 characters. We are deliberately not dealing with logins, as that is outside the scope of the project (and beyond our time constraints). 
 
