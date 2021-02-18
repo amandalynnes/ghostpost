@@ -1,10 +1,15 @@
-from django.shortcuts import render, redirect, reverse
+from django.shortcuts import render, redirect, reverse, HttpResponseRedirect
 from django.utils import timezone
 from ghostpost_app.models import PostItem
 from ghostpost_app.forms import AddPostForm
 
 
 # Create your views here.
+
+# TODO: fix objects in database
+# TODO: fix like and dislike redirect
+# TODO: fix score in template
+# TODO: render "boast" or "roast" instead of "1" or "two"
 
 
 def index_view(request):
@@ -40,17 +45,20 @@ def like_view(request, post_id):
     post = PostItem.objects.filter(id=post_id).first()
     post.likes += 1
     post.save()
-    return redirect('/')
+    return HttpResponseRedirect("")
 
 
 def dislike_view(request, post_id):
     post = PostItem.objects.filter(id=post_id).first()
     post.dislikes += 1
     post.save()
-    return redirect('/')
+    return HttpResponseRedirect("")
 
-def score_view(request, post_id):
-    post = PostItem.objects.filter(id=post_id).first()
-    post.dislikes += 1
-    post.save()
-    return redirect(reverse('homepage', args=['score']))
+def score_view(request):
+    posts = PostItem.objects.all().order_by('time_created').reverse()
+    # post.dislikes += 1
+    # post.save()
+    return render(request, 'score_view.html', {
+        'heading': 'Four Score.....',
+        'posts': posts
+    })

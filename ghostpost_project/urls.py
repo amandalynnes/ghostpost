@@ -22,7 +22,7 @@ urlpatterns = [
     path('post/', views.post_view, name= 'submit_post'),
     path('like/<int:post_id>/', views.like_view, name= 'like'),
     path('dislike/<int:post_id>/', views.dislike_view, name= 'dislike'),
-    path('score/<int:post_id>/', views.score_view, name= 'score'),
+    path('score/', views.score_view, name= 'score'),
 
     path('admin/', admin.site.urls),
 ]
