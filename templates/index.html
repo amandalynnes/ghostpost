@@ -14,16 +14,16 @@
     <p>
 
         {% for item in posts %}
-            <p>-------------------------------------------------</p>
+            <p>----------------------------------------------------------------------------</p>
             {% if item.choose == True %}
                 <h4>Boast</h4>
             {% endif %}
             {% if item.choose == False %}
                 <h4>Roast</h4>
             {% endif %}
-            <p>{{ item.text }}</p>
-            <p>{{ item.score }}</p>
-            <p>{{ item.time_created }}</p>
+            <p>text: {{ item.text }}</p>
+            <p>score: {{ item.score }}</p>
+            <p>time posted: {{ item.time_created }}</p>
             <p> <button onclick="location.href='/like/{{ item.id }}/'">Like</button></p>
             <p> <button onclick="location.href='/dislike/{{ item.id }}/'">Dislike</button></p>
         {% endfor %}

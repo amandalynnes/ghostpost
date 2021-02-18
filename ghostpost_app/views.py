@@ -11,7 +11,7 @@ def index_view(request):
     posts = PostItem.objects.all().order_by('time_created').reverse()
 
     return render(request, 'index.html', {
-        'heading': 'Roasts & Boasts',
+        'heading': 'Boasts & Roasts',
         'posts': posts
     })
 
@@ -31,7 +31,7 @@ def post_view(request):
     return render(
         request,
         'post_view.html',{
-        'heading': 'Post a Boast or a Roast',
+        'heading': 'Post, post, post, post post...post',
         'form': form},
     )
 
@@ -64,7 +64,7 @@ def boast_view(request):
     posts = PostItem.objects.filter(choose=True).order_by('time_created').reverse()
 
     return render(request, 'boast_view.html', {
-        'heading': 'Four Score.....',
+        'heading': "It's a Boast",
         'posts': posts
     })
 
@@ -73,6 +73,6 @@ def roast_view(request):
     posts = PostItem.objects.filter(choose=False).order_by('time_created').reverse()
 
     return render(request, 'roast_view.html', {
-        'heading': 'Four Score.....',
+        'heading': "It's a Roast",
         'posts': posts
     })
